@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,23 +20,21 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('app'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Card(
-              child: Container(
-                child: Text('Chart'),
-                width: double.infinity,
-                color: Colors.blue,
-              ),
-              elevation: 20,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Card(
+            child: Container(
+              child: Text('Chart'),
+              width: double.infinity,
+              color: Colors.blue,
             ),
-            UserTransaction()
-          ],
-        ),
-      )
+            elevation: 20,
+          ),
+          UserTransaction()
+        ],
+      ),
     );
   }
 }
