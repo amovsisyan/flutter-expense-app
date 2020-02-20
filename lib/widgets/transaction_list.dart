@@ -23,12 +23,12 @@ class TransactionList extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic,
                             fontSize: 20,
-                            color: Colors.purple),
+                            color: Theme.of(context).primaryColorDark),
                       ),
                       margin: EdgeInsets.symmetric(
                           vertical: 10, horizontal: 15),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.purple, width: 1)),
+                          border: Border.all(color: Theme.of(context).primaryColorLight, width: 1)),
                       padding: EdgeInsets.all(10),
                     ),
                     Column(
