@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
+  Function onSubmitHandler;
+
+  NewTransaction(
+      {@required this.onSubmitHandler});
+
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
   String titleInput;
   String amountInput;
-
-  final Function addNewTransaction;
-
-  NewTransaction({this.addNewTransaction});
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +51,10 @@ class NewTransaction extends StatelessWidget {
   }
 
   onSubmit() {
-    if (this.titleInput.length > 0 && this.amountInput.length > 0 && double.parse(this.amountInput) > 0) {
-      this.addNewTransaction(this.titleInput, double.parse(this.amountInput));
+    if (this.titleInput.length > 0 &&
+        this.amountInput.length > 0 &&
+        double.parse(this.amountInput) > 0) {
+      widget.onSubmitHandler(this.titleInput, double.parse(this.amountInput));
     }
   }
 }
