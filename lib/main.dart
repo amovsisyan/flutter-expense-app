@@ -10,10 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Personal app',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber
-      ),
+      theme: ThemeData(primarySwatch: Colors.purple, accentColor: Colors.amber),
       home: MyHomePage(),
     );
   }
@@ -25,18 +22,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> transactions = [
-    Transaction(
-        id: '123',
-        title: 'Transaction 111',
-        amount: 23.23,
-        createdAt: DateTime.now()),
-    Transaction(
-        id: '124',
-        title: 'Transaction 2',
-        amount: 44.23,
-        createdAt: DateTime.now())
-  ];
+  final List<Transaction> transactions = [];
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +48,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             elevation: 20,
           ),
-          UserTransaction(transactions: this.transactions)
+          transactions.isEmpty
+              ? Column(
+                  children: <Widget>[
+                    Text('No transactions'),
+                    Container(
+                      margin: EdgeInsets.only(top: 30),
+                      height: 200,
+                      child: Image.asset('assets/imgs/no_data.png',
+                          fit: BoxFit.cover),
+                    )
+                  ],
+                )
+              : UserTransaction(transactions: this.transactions)
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -102,7 +100,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   onSubmit(String titleInput, double amount) {
     this._addNewTransaction(titleInput, amount);
-
 
     Navigator.of(context).pop();
   }
