@@ -1,5 +1,6 @@
-import 'package:expense_flutter_app/widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
+import './widgets/new_transaction.dart';
+import './widgets/chart.dart';
 import './models/transaction.dart';
 import './widgets/user_transactions.dart';
 
@@ -41,11 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Card(
-            child: Container(
-              child: Text('Chart'),
-              width: double.infinity,
-              color: Colors.blue,
-            ),
+            child: Chart(recentTransactions: _recentTransactions),
             elevation: 20,
           ),
           transactions.isEmpty
@@ -68,6 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () => this.startAddNewTransaction(context),
       ),
     );
+  }
+
+  List<Transaction> get _recentTransactions {
+    DateTime afterWhen = DateTime.now().subtract(Duration(days: 7));
+    return this.transactions.where((Transaction transaction) {
+      return transaction.createdAt.isAfter(afterWhen);
+    }).toList();
   }
 
   startAddNewTransaction(BuildContext ctx) {
